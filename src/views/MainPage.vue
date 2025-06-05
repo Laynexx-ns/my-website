@@ -6,41 +6,41 @@ import { onMounted, ref } from 'vue'
 import { ArrowDown } from 'lucide-vue-next'
 import gsap from 'gsap'
 
-const lxText = ref<string>('')
+const lxText = ref<string>('Laynexx')
 const indicator = ref<string>('_')
-
-onMounted(() => {
-  let show = true
-  setInterval(() => {
-    indicator.value = show ? '_' : ''
-    show = !show
-  }, 500)
-})
-
-onMounted(() => {
-  let fullName = 'Laynexx'
-  let i = 0
-
-  const type = () => {
-    if (i <= fullName.length) {
-      lxText.value = fullName.slice(0, i)
-      i++
-      setTimeout(type, 200 + Math.random() * 1000)
-    } else {
-      console.log('invoed')
-      if (fullName === 'Laynexx') {
-        fullName = 'bezdarr'
-      } else {
-        fullName = 'Laynexx'
-      }
-      lxText.value = ''
-      i = 0
-      setTimeout(type, 0)
-    }
-  }
-
-  type()
-})
+//
+// onMounted(() => {
+//   let show = true
+//   setInterval(() => {
+//     indicator.value = show ? '_' : ''
+//     show = !show
+//   }, 500)
+// })
+//
+// onMounted(() => {
+//   let fullName = 'Laynexx'
+//   let i = 0
+//
+//   const type = () => {
+//     if (i <= fullName.length) {
+//       lxText.value = fullName.slice(0, i)
+//       i++
+//       setTimeout(type, 200 + Math.random() * 1000)
+//     } else {
+//       console.log('invoed')
+//       if (fullName === 'Laynexx') {
+//         fullName = 'bezdarr'
+//       } else {
+//         fullName = 'Laynexx'
+//       }
+//       lxText.value = ''
+//       i = 0
+//       setTimeout(type, 0)
+//     }
+//   }
+//
+//   type()
+// })
 onMounted(() => {
   const lines = document.querySelectorAll('.x-dashed-line')
 
@@ -83,35 +83,57 @@ onMounted(() => {
 })
 
 onMounted(() => {
-  const txts = document.querySelectorAll('.txt')
-  txts.forEach((item, index) => {
-    gsap.fromTo(
-      item,
-      {
-        opacity: 0,
-      },
-      {
-        opacity: 1,
-        duration: 4,
-        ease: 'power2.in',
-        delay: index * 4,
-      },
-    )
+  const el = document.querySelector('.txt')
+  if (!el) return
+  const chars = el.textContent?.split('') ?? []
+  el.textContent = ''
+
+  chars.forEach((char) => {
+    const span = document.createElement('span')
+    span.textContent = char
+    span.style.display = 'inline-block'
+
+    if (char === ' ') {
+      span.innerHTML = '&nbsp;'
+      span.style.width = '0.2em'
+    } else {
+      span.textContent = char
+    }
+
+    el.appendChild(span)
   })
+
+  gsap.fromTo(
+    el.children,
+    {
+      opacity: 0,
+      y: 100,
+      scale: 0.5,
+      filter: 'blur(4px)',
+    },
+    {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      filter: 'blur(0px)',
+      stagger: 0.05,
+      duration: 0.5,
+      ease: 'power2.out',
+    },
+  )
 })
 
 onMounted(() => {
-  const tabs = document.querySelector('tabs')
   gsap.fromTo(
-    tabs,
+    '.tabs',
     {
       y: '-30vh',
-      filter: 'blur(px)',
+      scale: 0.01,
     },
     {
       y: '0vh',
-      filter: 'none',
-      duration: 2,
+      duration: 1,
+      scale: 1,
       ease: 'power4.out',
     },
   )
