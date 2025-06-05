@@ -1,0 +1,21 @@
+@font-face {
+    font-family: Geist;
+    src: url("./fonts/Geist.ttf");
+}
+
+*{
+    font-family: Geist, serif;
+    letter-spacing: -0.05em;
+}
+
+:root {
+    --background-color: #000000;
+    --font-color: #eaeaea;
+    --border-color: rgba(234, 234, 234, 0.3);
+}
+
+.light {
+    --background-color: #ffffff;
+    --font-color: #09090b;
+    --border-color: rgba(9, 9, 11, 0.2);
+}

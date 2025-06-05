@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@import "./globals.css";
+
+body, html{
+    padding: 0;
+    margin: 0;
+}
+
+
+
+body, html{
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-color);
+
+}
+
+@theme dark {
+    --background-color: #000000;
+    --font-color: #EAEAEA;
+}
+
+@theme light {
+    --background-color: #FFFFFF;
+    --font-color: #09090b;
+
+}
+
+.tab-button {
+    @apply rounded-full py-4 px-8;
+}

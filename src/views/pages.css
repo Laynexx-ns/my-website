@@ -1,0 +1,7 @@
+    .start-text {
+        @apply text-(--font-color);
+    }
+
+    .x-dashed-line{
+       @apply w-screen absolute border-b border-dashed border-(--border-color)
+    }
