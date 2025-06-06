@@ -3,6 +3,7 @@
     }
 
     .x-dashed-line {
+        overflow: hidden;
         @apply w-[200vw] absolute border-b-2 border-dashed border-(--border-color);
         border-bottom: 1px dashed transparent;
         border-image: repeating-linear-gradient(to right, var(--border-color) 0 10px, transparent 10px 20px) 1;

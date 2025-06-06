@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Tabs from '@/components/tabs.vue'
 import Container from '@/components/Container.vue'
+import SocialsButton from '@/components/socials-button.vue'
 import './pages.css'
 import { onMounted, ref } from 'vue'
 import { ArrowDown } from 'lucide-vue-next'
@@ -158,12 +159,13 @@ onMounted(() => {
   <div class="y-dashed-line h-screen absolute right-5 md:right-7 w-[1px] bg-(--border-color)" />
   <Container>
     <div class="h-full w-full flex flex-col">
-      <div class="text-box mt-64">
+      <div class="w-full text-box mt-64">
         <span class="txt text-5xl md:text-9xl start-text">Hello, my name is</span>
         <h1 class="txt mt-4 md:-mt-2 text-8xl md:text-[256px] start-text font-bold">
           {{ lxText }}
         </h1>
       </div>
+      <SocialsButton class="mt-12 ml-6 w-1/5" />
     </div>
   </Container>
 
