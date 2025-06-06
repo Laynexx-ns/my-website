@@ -7,7 +7,6 @@ import { ArrowDown } from 'lucide-vue-next'
 import gsap from 'gsap'
 
 const lxText = ref<string>('Laynexx')
-const indicator = ref<string>('_')
 //
 // onMounted(() => {
 //   let show = true
@@ -45,17 +44,17 @@ onMounted(() => {
   const lines = document.querySelectorAll('.x-dashed-line')
 
   lines.forEach((line, index) => {
-    const fromX = index % 2 === 0 ? '-100vw' : '100vw'
+    const fromX = index % 2 === 0 ? '0vw' : '-100vw'
 
     gsap.fromTo(
       line,
-      { x: fromX, opacity: 0 },
+      { x: fromX },
       {
-        x: '0vw',
-        opacity: 1,
-        duration: 3,
-        ease: 'power4.out',
-        delay: index,
+        x: index % 2 == 0 ? '-100vw' : '0vw',
+        duration: 20,
+        ease: 'circ.inOut',
+        repeat: -1,
+        delay: index * 0.5,
       },
     )
   })
@@ -74,53 +73,56 @@ onMounted(() => {
       {
         y: '0vh',
         opacity: 1,
-        duration: 3,
+        duration: 4,
         ease: 'power4.out',
-        delay: index,
+        delay: index * 2,
       },
     )
   })
 })
 
 onMounted(() => {
-  const el = document.querySelector('.txt')
-  if (!el) return
-  const chars = el.textContent?.split('') ?? []
-  el.textContent = ''
+  const els = document.querySelectorAll('.txt')
+  els.forEach((el, index) => {
+    if (!el) return
+    const chars = el.textContent?.split('') ?? []
+    el.textContent = ''
 
-  chars.forEach((char) => {
-    const span = document.createElement('span')
-    span.textContent = char
-    span.style.display = 'inline-block'
-
-    if (char === ' ') {
-      span.innerHTML = '&nbsp;'
-      span.style.width = '0.2em'
-    } else {
+    chars.forEach((char) => {
+      const span = document.createElement('span')
       span.textContent = char
-    }
+      span.style.display = 'inline-block'
 
-    el.appendChild(span)
+      if (char === ' ') {
+        span.innerHTML = '&nbsp;'
+        span.style.width = '0.2em'
+      } else {
+        span.textContent = char
+      }
+
+      el.appendChild(span)
+    })
+
+    gsap.fromTo(
+      el.children,
+      {
+        opacity: 0,
+        y: 100,
+        scale: 0.5,
+        filter: 'blur(4px)',
+      },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        filter: 'blur(0px)',
+        stagger: 0.05,
+        delay: index,
+        duration: 0.5,
+        ease: 'circ.out',
+      },
+    )
   })
-
-  gsap.fromTo(
-    el.children,
-    {
-      opacity: 0,
-      y: 100,
-      scale: 0.5,
-      filter: 'blur(4px)',
-    },
-    {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      filter: 'blur(0px)',
-      stagger: 0.05,
-      duration: 0.5,
-      ease: 'power2.out',
-    },
-  )
 })
 
 onMounted(() => {
@@ -159,7 +161,7 @@ onMounted(() => {
       <div class="text-box mt-64">
         <span class="txt text-5xl md:text-9xl start-text">Hello, my name is</span>
         <h1 class="txt mt-4 md:-mt-2 text-8xl md:text-[256px] start-text font-bold">
-          {{ lxText }}{{ indicator }}
+          {{ lxText }}
         </h1>
       </div>
     </div>
