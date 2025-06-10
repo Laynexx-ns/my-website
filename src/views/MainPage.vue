@@ -7,8 +7,9 @@ import Projects from '@/pages/Projects.vue'
 import { onMounted, ref } from 'vue'
 import Tabs from '@/components/tabs.vue'
 import gsap from 'gsap'
+import Blog from '@/pages/Blog.vue'
 
-const welcomePage = ref<boolean>(true)
+const welcomePage = ref<boolean>(false)
 
 const scrollNext = () => {
   document.getElementById('proj')?.scrollIntoView({
@@ -50,6 +51,9 @@ onMounted(() => {
         <span> проекты </span>
         <ArrowDown />
       </div>
+    </div>
+    <div class="blog">
+      <Blog />
     </div>
   </div>
 </template>
