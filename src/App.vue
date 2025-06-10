@@ -1,8 +1,5 @@
-<script setup lang="ts">
-import Tabs from '@/components/tabs.vue'
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <Tabs class="tabs z-50" />
-  <RouterView class="z-1" />
+  <RouterView class="z-1 overflow-x-hidden" />
 </template>

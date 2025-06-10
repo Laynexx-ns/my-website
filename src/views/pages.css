@@ -2,9 +2,25 @@
         @apply text-(--font-color);
     }
 
+    .x-line{
+        overflow: hidden;
+        @apply w-[200vw] absolute h-[1px] bg-(--border-color)
+    }
+
     .x-dashed-line {
         overflow: hidden;
-        @apply w-[200vw] absolute border-b-2 border-dashed border-(--border-color);
-        border-bottom: 1px dashed transparent;
+        @apply w-[400vw] absolute border-b-2 border-(--border-color);
         border-image: repeating-linear-gradient(to right, var(--border-color) 0 10px, transparent 10px 20px) 1;
+    }
+
+    .y-line{
+        overflow: hidden;
+        @apply h-[100vh] absolute w-[1px] bg-(--border-color)
+    }
+
+    .y-dashed-line {
+        overflow: hidden;
+        height: 200vh ;
+        @apply  w-[1px] absolute border border-(--border-color);
+        border-image: repeating-linear-gradient(to top, var(--border-color) 0 10px, transparent 10px 20px) 1;
     }
